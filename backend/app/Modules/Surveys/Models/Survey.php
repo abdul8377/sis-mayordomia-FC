@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Modules\Surveys\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+class Survey extends Model
+{
+    use HasFactory;
+
+    protected $table = 'surveys';
+
+    protected $guarded = ['id'];
+
+    protected function casts(): array
+    {
+        return ['opens_at' => 'datetime', 'closes_at' => 'datetime'];
+    }
+
+    public function options(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(SurveyOption::class);
+    }
+
+    public function responses(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(SurveyResponse::class);
+    }
+}
