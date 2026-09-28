@@ -2,8 +2,8 @@
 
 namespace App\Modules\Configuration\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class SystemSetting extends Model
 {

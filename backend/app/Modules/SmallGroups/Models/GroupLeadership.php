@@ -2,8 +2,10 @@
 
 namespace App\Modules\SmallGroups\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Modules\Identity\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class GroupLeadership extends Model
 {
@@ -18,12 +20,12 @@ class GroupLeadership extends Model
         return ['starts_at' => 'datetime', 'ends_at' => 'datetime'];
     }
 
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(\App\Modules\Identity\Models\User::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function group(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function group(): BelongsTo
     {
         return $this->belongsTo(SmallGroup::class, 'group_id');
     }

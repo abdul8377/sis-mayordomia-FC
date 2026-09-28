@@ -2,8 +2,6 @@
 
 namespace App\Policies\Modules\People\Policies;
 
-use App\Modules\Identity\Models\User;
-
 class PersonPolicy
 {
     /**

@@ -2,8 +2,12 @@
 
 namespace App\Modules\YouthMinistry\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Modules\Participation\Models\JaAttendance;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class JaActivity extends Model
 {
@@ -18,28 +22,28 @@ class JaActivity extends Model
         return ['starts_at' => 'datetime', 'ends_at' => 'datetime', 'is_primary' => 'boolean', 'archived_at' => 'datetime'];
     }
 
-    public function activityType(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function activityType(): BelongsTo
     {
         return $this->belongsTo(ActivityType::class);
     }
 
-    public function assignment(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function assignment(): HasOne
     {
         return $this->hasOne(ActivityGroupAssignment::class, 'activity_id')->whereNull('ended_at');
     }
 
-    public function opportunities(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function opportunities(): HasMany
     {
         return $this->hasMany(Opportunity::class, 'activity_id');
     }
 
-    public function result(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function result(): HasOne
     {
         return $this->hasOne(ActivityResult::class, 'activity_id');
     }
 
-    public function attendees(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function attendees(): HasMany
     {
-        return $this->hasMany(\App\Modules\Participation\Models\JaAttendance::class, 'activity_id');
+        return $this->hasMany(JaAttendance::class, 'activity_id');
     }
 }

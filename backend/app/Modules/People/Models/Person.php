@@ -2,8 +2,12 @@
 
 namespace App\Modules\People\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Modules\Identity\Models\User;
+use App\Modules\SmallGroups\Models\GroupMembership;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Person extends Model
 {
@@ -18,33 +22,33 @@ class Person extends Model
         return [];
     }
 
-    public function talents(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function talents(): BelongsToMany
     {
         return $this->belongsToMany(Talent::class, 'person_talents')->wherePivot('kind', 'possesses');
     }
 
-    public function learning(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function learning(): BelongsToMany
     {
         return $this->belongsToMany(Talent::class, 'person_talents')->wherePivot('kind', 'wants_to_learn');
     }
 
-    public function interests(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function interests(): BelongsToMany
     {
         return $this->belongsToMany(Interest::class, 'person_interests');
     }
 
-    public function availability(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function availability(): BelongsToMany
     {
         return $this->belongsToMany(AvailabilitySlot::class, 'person_availability');
     }
 
-    public function membership(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function membership(): HasOne
     {
-        return $this->hasOne(\App\Modules\SmallGroups\Models\GroupMembership::class)->whereNull('ends_at');
+        return $this->hasOne(GroupMembership::class)->whereNull('ends_at');
     }
 
-    public function account(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function account(): HasOne
     {
-        return $this->hasOne(\App\Modules\Identity\Models\User::class);
+        return $this->hasOne(User::class);
     }
 }

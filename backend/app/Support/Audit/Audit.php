@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Support\Audit;
 
 use Illuminate\Database\Eloquent\Model;

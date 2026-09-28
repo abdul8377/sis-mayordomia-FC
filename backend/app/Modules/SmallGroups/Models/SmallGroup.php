@@ -2,8 +2,10 @@
 
 namespace App\Modules\SmallGroups\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class SmallGroup extends Model
 {
@@ -18,12 +20,12 @@ class SmallGroup extends Model
         return [];
     }
 
-    public function memberships(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function memberships(): HasMany
     {
         return $this->hasMany(GroupMembership::class, 'group_id')->whereNull('ends_at');
     }
 
-    public function leadership(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function leadership(): HasOne
     {
         return $this->hasOne(GroupLeadership::class, 'group_id')->whereNull('ends_at');
     }

@@ -1,7 +1,9 @@
 <?php
-use App\Modules\Identity\Http\Controllers\AuthController;
+
 use App\Modules\Identity\Http\Controllers\AccountController;
+use App\Modules\Identity\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+
 Route::get('/me', [AuthController::class, 'me']);
 Route::put('/me/password', [AuthController::class, 'password']);
 Route::get('/accounts', [AccountController::class, 'index']);

@@ -2,8 +2,10 @@
 
 namespace App\Modules\YouthMinistry\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Modules\SmallGroups\Models\SmallGroup;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ActivityGroupAssignment extends Model
 {
@@ -18,8 +20,8 @@ class ActivityGroupAssignment extends Model
         return ['assigned_at' => 'datetime', 'ended_at' => 'datetime'];
     }
 
-    public function group(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function group(): BelongsTo
     {
-        return $this->belongsTo(\App\Modules\SmallGroups\Models\SmallGroup::class, 'group_id');
+        return $this->belongsTo(SmallGroup::class, 'group_id');
     }
 }

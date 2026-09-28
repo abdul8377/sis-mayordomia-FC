@@ -2,8 +2,6 @@
 
 namespace App\Policies\Modules\YouthMinistry\Policies;
 
-use App\Modules\Identity\Models\User;
-
 class ActivityPolicy
 {
     /**

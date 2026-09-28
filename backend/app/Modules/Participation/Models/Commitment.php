@@ -2,8 +2,11 @@
 
 namespace App\Modules\Participation\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Modules\People\Models\Person;
+use App\Modules\YouthMinistry\Models\Opportunity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Commitment extends Model
 {
@@ -18,13 +21,13 @@ class Commitment extends Model
         return ['accepted_at' => 'datetime', 'cancelled_at' => 'datetime'];
     }
 
-    public function person(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function person(): BelongsTo
     {
-        return $this->belongsTo(\App\Modules\People\Models\Person::class);
+        return $this->belongsTo(Person::class);
     }
 
-    public function opportunity(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function opportunity(): BelongsTo
     {
-        return $this->belongsTo(\App\Modules\YouthMinistry\Models\Opportunity::class);
+        return $this->belongsTo(Opportunity::class);
     }
 }

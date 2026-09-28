@@ -2,8 +2,11 @@
 
 namespace App\Modules\Participation\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Modules\People\Models\Person;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class JaAttendance extends Model
 {
@@ -18,12 +21,12 @@ class JaAttendance extends Model
         return [];
     }
 
-    public function person(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function person(): BelongsTo
     {
-        return $this->belongsTo(\App\Modules\People\Models\Person::class);
+        return $this->belongsTo(Person::class);
     }
 
-    public function participations(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function participations(): HasMany
     {
         return $this->hasMany(Participation::class);
     }

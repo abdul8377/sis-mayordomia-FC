@@ -2,8 +2,10 @@
 
 namespace App\Modules\Service\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Modules\People\Models\Person;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ServiceNeed extends Model
 {
@@ -18,8 +20,8 @@ class ServiceNeed extends Model
         return ['reported_at' => 'datetime'];
     }
 
-    public function responsible(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function responsible(): BelongsTo
     {
-        return $this->belongsTo(\App\Modules\People\Models\Person::class, 'responsible_person_id');
+        return $this->belongsTo(Person::class, 'responsible_person_id');
     }
 }

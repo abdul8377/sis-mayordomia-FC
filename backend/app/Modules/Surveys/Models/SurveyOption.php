@@ -2,8 +2,8 @@
 
 namespace App\Modules\Surveys\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class SurveyOption extends Model
 {

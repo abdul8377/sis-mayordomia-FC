@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Support\Dates;
 
 use App\Modules\SmallGroups\Models\WeeklyCycle;
@@ -10,6 +11,7 @@ final class CycleDate
     {
         $date = CarbonImmutable::parse($value)->setTimezone(config('community.timezone'));
         $saturday = $date->isSaturday() ? $date : $date->next('Saturday');
+
         return WeeklyCycle::firstOrCreate(['saturday_date' => $saturday->toDateString()]);
     }
 }

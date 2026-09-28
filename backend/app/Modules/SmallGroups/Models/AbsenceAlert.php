@@ -2,8 +2,10 @@
 
 namespace App\Modules\SmallGroups\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class AbsenceAlert extends Model
 {
@@ -18,12 +20,12 @@ class AbsenceAlert extends Model
         return [];
     }
 
-    public function membership(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function membership(): BelongsTo
     {
         return $this->belongsTo(GroupMembership::class);
     }
 
-    public function followUps(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function followUps(): HasMany
     {
         return $this->hasMany(AbsenceFollowUp::class, 'alert_id');
     }
